@@ -12,6 +12,19 @@ import Configuration from './components/Configuration';
 import APropos from './components/APropos';
 
 export default class App extends React.Component {
+  constructor(...props){
+    super(...props)
+
+      this.state = {
+        name:''
+      };
+  }
+
+   setName(name){
+    this.setState({...this.state, name:name});
+    console.log(name)
+  }
+
   render() {
     return (
            <Router>
@@ -31,10 +44,10 @@ export default class App extends React.Component {
                 </nav>
                 <Switch>
                   <Route exact path="/">
-                    <Accueil />
+                    <Accueil name={this.state.name} />
                   </Route>
                   <Route path="/configuration">
-                    <Configuration />
+                    <Configuration name={name => this.setName(name)}/>
                   </Route>
                   <Route path="/aPropos">
                     <APropos />

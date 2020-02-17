@@ -1,11 +1,20 @@
 import React from 'react';
 
 export default class Configuration extends React.Component {
+	setName(event) {
+		event.preventDefault();
+		
+		this.props.name(event.target[0].value);
+	}
+
 	render () {
 		return (
 			<div>
-  			<h2>Configuration</h2>
-  			</div>
+			<form onSubmit={event => this.setName(event)}>
+					<input type="text" />
+					<button>Envoyer</button>
+				</form>
+			</div>
 		);
 	}
 }
