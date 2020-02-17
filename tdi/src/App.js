@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -8,41 +7,41 @@ import {
   Link
 } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+import Accueil from './components/Accueil';
+import Configuration from './components/Configuration';
+import APropos from './components/APropos';
+
+export default class App extends React.Component {
+  render() {
+    return (
            <Router>
               <div>
                 <nav>
                   <ul>
                     <li>
-                      <Link to="/">Home</Link>
+                      <Link to="/" >Accueil</Link>
                     </li>
                     <li>
-                      <Link to="/about">About</Link>
+                      <Link to="/configuration">Configuration</Link>
                     </li>
                     <li>
-                      <Link to="/users">Users</Link>
+                      <Link to="/aPropos">A propos</Link>
                     </li>
                   </ul>
                 </nav>
+                <Switch>
+                  <Route exact path="/">
+                    <Accueil />
+                  </Route>
+                  <Route path="/configuration">
+                    <Configuration />
+                  </Route>
+                  <Route path="/aPropos">
+                    <APropos />
+                  </Route>
+                </Switch>
               </div>
             </Router>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
   );
 }
-
-export default App;
+}
