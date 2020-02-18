@@ -21,7 +21,7 @@ const arrayHasIndex = (array, index) => Array.isArray(array) && array.hasOwnProp
 export default function reducer(state = initialState, action) {
     console.log('reducer', action.type);
     console.log(action.game);
-    console.log(state)
+    console.log(state);
     switch (action.type) {
 
         case ADD_GAME:

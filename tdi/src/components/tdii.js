@@ -2,22 +2,43 @@ import React from 'react';
 
 export default class Tdii extends React.Component {
     setNumber(event) {
+        this.randNumber = Math.floor(Math.random() * 101)
+        console.log(this.randNumber);
+
+    }
+
+    checkNumber(event) {
         event.preventDefault();
-        this.props.number(event.target[0].value);
+        let target = parseInt(event.target[0].value);
+        console.log("target :", target);
+        console.log(this.randNumber);
+        switch (target) {
+            case target > this.randNumber :
+                document.getElementById("indic").innerHTML="c'est plus petit";
+               console.log("c'est plus petit");
+               break;
+            case target < this.randNumber :
+                document.getElementById("indic").innerHTML="c'est plus grand";
+                console.log("c'est plus grand");
+                break;
+            default :
+                document.getElementById("indic").innerHTML="c'est gagné";
+                console.log("c'est gagné");
+                break;
+        }
+
     }
 
     render() {
         return (
+
             <div>
-                <div>
-                    <h2> c'est {this.props.number}</h2>
-                </div>
-                <div>
-                    <form onSubmit={event => this.setNumber(event)}>
-                        <input type="text"/>
-                        <button>Envoyer</button>
-                    </form>
-                </div>
+                <h2 id="indic"></h2>
+                <form onSubmit={event => this.checkNumber(event)}>
+                    <input type="number"/>
+                    <button>Envoyer</button>
+                </form>
+                <button onClick={event => this.setNumber(event)}>Nouvelle partie</button>
             </div>
         );
     }
