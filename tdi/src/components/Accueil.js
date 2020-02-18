@@ -1,6 +1,7 @@
 import React from 'react';
-
-export default class Accueil extends React.Component {
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+ class Accueil extends React.Component {
 	render () {
 		return (
 			<div> 
@@ -9,3 +10,13 @@ export default class Accueil extends React.Component {
 		);
 	}
 }
+const mapStateToProps = state => {
+	return {
+		name: state.name
+	};
+}
+
+export default withRouter(connect(
+	mapStateToProps
+)(Accueil));
+
