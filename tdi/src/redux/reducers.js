@@ -12,8 +12,12 @@ const initialState = {
      * @param      {Number}  {score}
      * @param      {Number}  {number}
      */
-    name:'',
-    games: []
+    name:'Joueur1',
+    games: [{
+        name: 'Joueur1',
+        score: 50,
+        number: 12
+    }]
 };
 
 const arrayHasIndex = (array, index) => Array.isArray(array) && array.hasOwnProperty(index);
