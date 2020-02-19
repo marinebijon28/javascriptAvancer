@@ -43,13 +43,14 @@ class Tdii extends React.Component {
         });
     }
     sortScore() {
+        this.componentDidMount();
         let array = this.props.games;
         array.push({
             name: this.props.name,
             score: this.score,
             number: this.randNumber
         });
-        this.handleSubmit();
+
         array.sort((a, b) => {
             if (a.score === -1) {
                 return 1
@@ -68,6 +69,7 @@ class Tdii extends React.Component {
         if (array.length > 5) {
             array.pop();
         }
+        this.handleSubmit();
         this.props.addGame(array);
         this.setState({...this.state, games: this.props.games});
     }
