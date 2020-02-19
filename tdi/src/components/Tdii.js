@@ -60,6 +60,7 @@ class Tdii extends React.Component {
 
         if (this.score > 0) {
             this.score = -1;
+            document.getElementById("indic").innerHTML = "c'est perdu !";
             this.sortScore();
         } else {
             this.score = 0;
