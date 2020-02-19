@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import firebase from '../firebase.js';
 
 import {connect} from "react-redux";
 import {addGame} from "../redux/actions";
@@ -11,9 +12,23 @@ class Tdii extends React.Component {
             randNumber: 0,
             score: 0,
             games: []
-        }
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleSubmit() {
+        console.log("coucou")
 
+        const itemsRef = firebase.database().ref('games');
+        console.log(itemsRef);
+        console.log("coucou")
+        const item = {
+            name: this.props.name,
+            score: this.score,
+            number: this.randNumber
+        };
+        console.log("coucou")
+        console.log(itemsRef.push(item));
+    }
     sortScore() {
         let array = this.props.games;
         array.push({
@@ -21,6 +36,7 @@ class Tdii extends React.Component {
             score: this.score,
             number: this.randNumber
         });
+this.handleSubmit();
         array.sort((a, b) => {
             if (a.score === -1) {
                 return 1
@@ -79,6 +95,7 @@ class Tdii extends React.Component {
         return (
 
             <div>
+
                 <h2 id="indic">Bienvenue</h2>
                 <form onSubmit={event => this.checkNumber(event)}>
                     <input type="number"/>
@@ -104,6 +121,7 @@ class Tdii extends React.Component {
                             </tr>))}
                         </tbody>
                     </table>
+
                 </div>
 
             </div>
