@@ -18,7 +18,6 @@ class Tdii extends React.Component {
 
     handleSubmit() {
         const itemsRef = firebase.database().ref('games');
-        console.log(itemsRef);
         const item = {
             name: this.props.name,
             score: this.score,
@@ -26,6 +25,7 @@ class Tdii extends React.Component {
         };
         itemsRef.push(item)
     }
+
     componentDidMount() {
         const itemsRef = firebase.database().ref('games');
         itemsRef.on('value', (snapshot) => {
@@ -53,13 +53,14 @@ class Tdii extends React.Component {
                     }
                 }
             });
-            if (newState.length > 5) {
+            while (newState.length > 5) {
                 newState.pop();
             }
             this.props.addGame(newState);
             this.setState({...this.state, games: this.props.games});
         });
     }
+
     sortScore() {
         this.componentDidMount();
         let array = this.props.games;
@@ -124,7 +125,7 @@ class Tdii extends React.Component {
     }
 
     render() {
-        const {games} = this.props;
+
         return (
 
             <div>
@@ -135,27 +136,6 @@ class Tdii extends React.Component {
                     <button>Envoyer</button>
                 </form>
                 <button onClick={event => this.setNumber(event)}>Nouvelle partie</button>
-                <div className="score">
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Score</th>
-                            <th>Nombre</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {games.map((game, index) => (
-                            <tr key={index}>
-                                <td>{game.name}</td>
-                                <td>{game.score}</td>
-                                <td>{game.number}</td>
-                            </tr>))}
-                        </tbody>
-                    </table>
-
-                </div>
 
             </div>
 

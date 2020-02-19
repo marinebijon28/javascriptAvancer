@@ -15,6 +15,7 @@ import Accueil from './components/Accueil';
 import Configuration from './components/Configuration';
 import APropos from './components/APropos';
 import Tdii from "./components/Tdii";
+import Score from "./components/Score";
 
 
 const store = createStore(reducer);
@@ -50,6 +51,9 @@ export default class App extends React.Component {
                                 <li>
                                     <Link to="/tdii">Le nombre à trouver</Link>
                                 </li>
+                                <li>
+                                    <Link to="/score">Tableau des scores</Link>
+                                </li>
                             </ul>
                         </nav>
                         <Switch>
@@ -64,6 +68,9 @@ export default class App extends React.Component {
                             </Route>
                             <Route path="/tdii">
                                 <Tdii/>
+                            </Route>
+                            <Route path="/score">
+                                <Score/>
                             </Route>
                         </Switch>
                     </div>
