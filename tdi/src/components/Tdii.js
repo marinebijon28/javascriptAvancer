@@ -15,19 +15,32 @@ class Tdii extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleSubmit() {
-        console.log("coucou")
 
+    handleSubmit() {
         const itemsRef = firebase.database().ref('games');
         console.log(itemsRef);
-        console.log("coucou")
         const item = {
             name: this.props.name,
             score: this.score,
             number: this.randNumber
         };
-        console.log("coucou")
-        console.log(itemsRef.push(item));
+        itemsRef.push(item)
+    }
+    componentDidMount() {
+        const itemsRef = firebase.database().ref('games');
+        itemsRef.on('value', (snapshot) => {
+            let items = snapshot.val();
+            let newState = [];
+            for (let item in items) {
+                newState.push({
+                    name: items[item].name,
+                    score: items[item].score,
+                    number: items[item].number
+                });
+            }
+            this.props.addGame(newState);
+            this.setState({...this.state, games: this.props.games});
+        });
     }
     sortScore() {
         let array = this.props.games;
@@ -36,7 +49,7 @@ class Tdii extends React.Component {
             score: this.score,
             number: this.randNumber
         });
-this.handleSubmit();
+        this.handleSubmit();
         array.sort((a, b) => {
             if (a.score === -1) {
                 return 1
