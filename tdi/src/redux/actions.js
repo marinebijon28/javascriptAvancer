@@ -5,14 +5,6 @@ export const ADD_GAME = 'ADD_GAME';
 export const SET_NAME = 'SET_NAME';
 
 
-export const SEND_NUMBER = 'SEND_NUMBER';
-export const SEND_NAME = 'SEND_NAME';
-export const RETRY = 'RETRY';
-
-
-/*
- * action creators
- */
 
 /**
  * Add student to store

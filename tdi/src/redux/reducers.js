@@ -14,19 +14,7 @@ const initialState = {
      * @param      {Number}  {number}
      */
     name:'Joueur1',
-    games: [{
-        name: 'Joueur1',
-        score: 1,
-        number: 12
-    },{
-        name: 'Joueur2',
-        score: 3,
-        number: 3
-    },{
-        name: 'Joueur2',
-        score: 3,
-        number: 11
-    }]
+    games: []
 };
 
 

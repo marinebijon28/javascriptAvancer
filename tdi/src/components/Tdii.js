@@ -7,32 +7,26 @@ import {addGame} from "../redux/actions";
 class Tdii extends React.Component {
     constructor() {
         super();
-
         this.state = {
             randNumber: 0,
             score: 0,
             games: []
-
         }
     }
 
     sortScore() {
-
         let array = this.props.games;
         array.push({
             name: this.props.name,
             score: this.score,
             number: this.randNumber
         });
-        console.log('mon array', array);
         array.sort((a, b) => {
-            if(a.score === -1){
+            if (a.score === -1) {
                 return 1
-            }else
-                if(b.score === -1){
+            } else if (b.score === -1) {
                 return -1
-            }else
-            if (a.score === b.score) {
+            } else if (a.score === b.score) {
                 return 0;
             } else {
                 if (a.score < b.score) {
@@ -42,22 +36,15 @@ class Tdii extends React.Component {
                 }
             }
         });
-        console.log('mon array apres tri', array);
         if (array.length > 5) {
             array.pop();
         }
-
         this.props.addGame(array);
-        this.setState({...this.state,games:this.props.games});
-
-        console.log('etat de mon props games', this.props.games);
-
-
+        this.setState({...this.state, games: this.props.games});
     }
 
 
     setNumber() {
-
         if (this.score > 0) {
             this.score = -1;
             document.getElementById("indic").innerHTML = "c'est perdu !";
@@ -74,23 +61,17 @@ class Tdii extends React.Component {
         this.score++;
         event.preventDefault();
         let target = parseInt(event.target[0].value);
-        console.log(this.randNumber);
 
         if (target > this.randNumber) {
             document.getElementById("indic").innerHTML = "c'est plus petit";
-            console.log("c'est plus petit");
         } else if (target < this.randNumber) {
             document.getElementById("indic").innerHTML = "c'est plus grand";
-            console.log("c'est plus grand");
-
         } else {
             document.getElementById("indic").innerHTML = "c'est gagné";
-            console.log("c'est gagné");
             this.sortScore();
             this.score = 0;
             this.setNumber();
         }
-
     }
 
     render() {
