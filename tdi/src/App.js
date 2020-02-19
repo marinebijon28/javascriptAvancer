@@ -14,11 +14,8 @@ import {
 import Accueil from './components/Accueil';
 import Configuration from './components/Configuration';
 import APropos from './components/APropos';
-import Tdii from "./components/tdii";
+import Tdii from "./components/Tdii";
 
-import {
-    addGame,
-} from './redux/actions';
 
 const store = createStore(reducer);
 

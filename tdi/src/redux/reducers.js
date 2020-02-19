@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     /**
-     * Student datas [{Object}]
+     *
+     * games game[{Object}]
      *
      * @param      {String}  {name}
      * @param      {Number}  {score}
@@ -15,21 +16,28 @@ const initialState = {
     name:'Joueur1',
     games: [{
         name: 'Joueur1',
-        score: 50,
+        score: 1,
         number: 12
+    },{
+        name: 'Joueur2',
+        score: 3,
+        number: 3
+    },{
+        name: 'Joueur2',
+        score: 3,
+        number: 11
     }]
 };
 
-const arrayHasIndex = (array, index) => Array.isArray(array) && array.hasOwnProperty(index);
 
 export default function reducer(state = initialState, action) {
     console.log('reducer', action.type);
-    console.log(action.game);
+    console.log(action.games);
     console.log(state);
     switch (action.type) {
 
         case ADD_GAME:
-            return {...state, games: [...state.games, action.game]};
+            return {...state, games: action.games};
         case SET_NAME:
             return {...state, name: action.name};
         default :

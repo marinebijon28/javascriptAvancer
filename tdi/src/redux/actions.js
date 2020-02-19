@@ -17,12 +17,11 @@ export const RETRY = 'RETRY';
 /**
  * Add student to store
  *
- * @param      {String}  {type}  Reducer action
- * @param      {int}  {student:{name, age, groupe}}  Student datas
  * @return     {Object}  Redux Store Object
+ * @param game
  */
-export function addGame(game) {
-    return { type: ADD_GAME, game };
+export function addGame(games) {
+    return { type: ADD_GAME, games };
 }
 export function setName(name) {
     return { type: SET_NAME, name };
