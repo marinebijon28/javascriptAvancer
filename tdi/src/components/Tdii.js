@@ -38,6 +38,24 @@ class Tdii extends React.Component {
                     number: items[item].number
                 });
             }
+            newState.sort((a, b) => {
+                if (a.score === -1) {
+                    return 1
+                } else if (b.score === -1) {
+                    return -1
+                } else if (a.score === b.score) {
+                    return 0;
+                } else {
+                    if (a.score < b.score) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+            if (newState.length > 5) {
+                newState.pop();
+            }
             this.props.addGame(newState);
             this.setState({...this.state, games: this.props.games});
         });
